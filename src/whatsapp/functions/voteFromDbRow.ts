@@ -1,5 +1,5 @@
 /*!
- * Copyright 2023 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,23 +17,15 @@
 import { exportModule } from '../exportModule';
 import { MsgModel } from '../models';
 
-/** @whatsapp 397995
+/**
+ * @whatsapp WAWebPollsDbSerialization >= 2.3000.x
  */
-export declare function sendNewsletterMessageJob(data: {
-  msgData?: any;
-  msg?: MsgModel;
-  newsletterJid: string;
-  type: string;
-  editType?: 'media' | 'text';
-}): Promise<{ ack: { t: number }; serverId: number; success: boolean }>;
+export declare function voteFromDbRow(msg: MsgModel): Promise<any>;
 
 exportModule(
   exports,
   {
-    sendNewsletterMessageJob: [
-      'sendNewsletterMessageJob',
-      'sendNewsletterMessage', // <= 2.2326.x
-    ],
+    voteFromDbRow: ['voteFromDbRow'],
   },
-  (m) => m.sendNewsletterMessageJob || m.sendNewsletterMessage // <= 2.2326.x
+  (m) => m.voteFromDbRow
 );
