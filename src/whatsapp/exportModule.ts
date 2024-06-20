@@ -16,7 +16,7 @@
 
 import Debug from 'debug';
 
-import { trackException } from '../gtag';
+// import { trackException } from '../gtag';
 import { InferArgs, InferReturn, wrapFunction } from '../util';
 import * as webpack from '../webpack';
 
@@ -99,7 +99,7 @@ export function exportModule(
         if (!moduleId) {
           const description = `Module ${name} was not found with ${condition.toString()}`;
           console.error(description);
-          trackException(description);
+          // trackException(description);
           Object.defineProperty(this, name, {
             get: () => undefined,
           });
@@ -121,7 +121,7 @@ export function exportModule(
               ' or '
             )} was not found for ${name} in module ${moduleId}`;
             console.error(description);
-            trackException(description);
+            // trackException(description);
             Object.defineProperty(this, name, {
               get: () => undefined,
             });
@@ -135,7 +135,7 @@ export function exportModule(
               if (!valueFn()) {
                 const description = `Property ${property} was not found for ${name} in module ${moduleId}`;
                 console.error(description);
-                trackException(description);
+                // trackException(description);
                 Object.defineProperty(this, name, {
                   get: () => undefined,
                 });
@@ -253,7 +253,7 @@ export function wrapModuleFunction<TFunc extends (...args: any[]) => any>(
   if (!functionName) {
     const description = `function was not found in the module ${moduleId}`;
     console.error(description);
-    trackException(description);
+    // trackException(description);
     return;
   }
 

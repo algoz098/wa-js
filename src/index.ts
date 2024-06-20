@@ -18,7 +18,7 @@
 /* eslint-disable simple-import-sort/imports */
 import './config';
 import './deviceName';
-import './gtag';
+// import './gtag';
 
 import * as webpack from './webpack';
 
