@@ -212,3 +212,19 @@ exportModule(
   },
   (m) => m.default.NewsletterCollection
 );
+
+exportModule(
+  exports,
+  {
+    StatusStore: ['StatusCollectionImpl', 'TextStatusCollection'],
+  },
+  (m) => m.StatusCollection || m.TextStatusCollection
+);
+
+exportModule(
+  exports,
+  {
+    StatusV3Store: ['StatusV3Collection', 'StatusCollection'],
+  },
+  (m) => m.StatusV3CollectionImpl || m.StatusCollection
+);

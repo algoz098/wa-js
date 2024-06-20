@@ -1,5 +1,5 @@
 /*!
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ interface Props {
   id: Wid;
   creation?: any;
   owner?: any;
+  memberAddMode?: string;
   subject?: string;
   subjectTime?: any;
   desc?: string;
@@ -97,8 +98,9 @@ export declare interface GroupMetadataModel
 export declare class GroupMetadataModel extends Model {
   idClass: typeof Wid;
   participants: ParticipantCollection;
+  pastParticipants: ParticipantCollection;
   constructor(
-    proterties?: ModelPropertiesContructor<GroupMetadataModel>,
+    properties?: ModelPropertiesContructor<GroupMetadataModel>,
     options?: ModelOptions
   );
   hasUniqueShortNameMention(e?: any): boolean;

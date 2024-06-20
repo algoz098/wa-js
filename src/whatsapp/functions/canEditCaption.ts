@@ -1,5 +1,5 @@
 /*!
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,21 +15,17 @@
  */
 
 import { exportModule } from '../exportModule';
-import { ChatModel } from '../models';
+import { MsgModel } from '../models';
 
 /**
- * @whatsapp 10236
- * @whatsapp 510236 >= 2.2222.8
- * @whatsapp 742348 >= 2.2228.4
- * @whatsapp 456180 >= 2.2230.8
- * @whatsapp WAWebSetPinChatAction >= 2.3000.x
+ * @whatsapp WAWebMsgActionCapability >= 2.3000.0
  */
-export declare function setPin(chat: ChatModel, pin: boolean): Promise<void>;
+export declare function canEditCaption(msg: MsgModel): boolean;
 
 exportModule(
   exports,
   {
-    setPin: 'setPin',
+    canEditCaption: 'canEditCaption',
   },
-  (m) => m.setPin && !m.unpinAll && !m.getPinLimit
+  (m) => m.canEditCaption
 );

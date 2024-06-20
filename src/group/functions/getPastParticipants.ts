@@ -14,22 +14,20 @@
  * limitations under the License.
  */
 
-import { exportModule } from '../exportModule';
-import { ChatModel } from '../models';
+import { Wid } from '../../whatsapp';
+import { ensureGroup } from './';
 
 /**
- * @whatsapp 10236
- * @whatsapp 510236 >= 2.2222.8
- * @whatsapp 742348 >= 2.2228.4
- * @whatsapp 456180 >= 2.2230.8
- * @whatsapp WAWebSetPinChatAction >= 2.3000.x
+ * Get an array of past participants of a group
+ *
+ * @example
+ * ```javascript
+ * WPP.group.getPastParticipants('[group-id]@g.us');
+ * ```
+ *
+ * @category Group
  */
-export declare function setPin(chat: ChatModel, pin: boolean): Promise<void>;
-
-exportModule(
-  exports,
-  {
-    setPin: 'setPin',
-  },
-  (m) => m.setPin && !m.unpinAll && !m.getPinLimit
-);
+export async function getPastParticipants(groupId: string | Wid) {
+  const groupChat = await ensureGroup(groupId);
+  return groupChat.groupMetadata!.pastParticipants.getModelsArray();
+}
