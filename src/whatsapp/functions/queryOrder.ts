@@ -1,5 +1,5 @@
 /*!
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,36 @@
  * limitations under the License.
  */
 
-import { Wid } from '..';
 import { exportModule } from '../exportModule';
-import { ChatModel } from '../models';
 
-/** @whatsapp 50101
- * @whatsapp 650101 >= 2.2222.8
- * @whatsapp 211739 >= 2.2228.4
- */
-export declare function findChat(wid: Wid): Promise<ChatModel>;
+/** @whatsapp WAWebBizQueryOrderJob >= 2.30000.0 */
+export declare function queryOrder(
+  productId: string,
+  imageWidth: number,
+  imageHeight: number,
+  token: string,
+  e?: any
+): Promise<{
+  currency: string;
+  createdAt: number;
+  products: {
+    id: string;
+    price: number;
+    thumbnailId: string;
+    thumbnailUrl: string;
+    currency: string;
+    name: string;
+    quantity: number;
+  }[];
+  subtotal: number;
+  total: number;
+  tax: number | null;
+}>;
 
 exportModule(
   exports,
   {
-    findChat: ['findChat', 'findOrCreateLatestChat'],
+    queryOrder: 'queryOrder',
   },
-  (m) => m.findChat || m.findOrCreateLatestChat
+  (m) => m.queryOrder && m.queryOrderResponse
 );
