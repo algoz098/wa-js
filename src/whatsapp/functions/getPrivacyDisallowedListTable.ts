@@ -1,5 +1,5 @@
 /*!
- * Copyright 2023 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,26 +16,23 @@
 
 import { exportModule } from '../exportModule';
 
+declare class DisallowedListTable {
+  get(type: 'status' | 'groupadd' | 'last' | 'profile'): Promise<{
+    dhash: number;
+    disallowedList: string[];
+    id: 'status' | 'groupadd' | 'last' | 'profile';
+  } | null>;
+}
+
 /**
- * @whatsapp 135963 >= 2.2310.5
- * @whatsapp WAWebUserPrefsGeneral >= 2.3000.0
+ * @whatsapp WAWebSchemaPrivacyDisallowedList >= 2.3000.0
  */
-export declare function getPushname(): string;
-export declare function getUserPrivacySettings(): {
-  about: string;
-  callAdd: string;
-  groupAdd: string;
-  lastSeen: string;
-  online: string;
-  profilePicture: string;
-  readReceipts: string;
-};
+export declare function getPrivacyDisallowedListTable(): DisallowedListTable;
 
 exportModule(
   exports,
   {
-    getPushname: 'getPushname',
-    getUserPrivacySettings: 'getUserPrivacySettings',
+    getPrivacyDisallowedListTable: 'getPrivacyDisallowedListTable',
   },
-  (m) => m.getPushname && m.setBrowserId && m.getUserPrivacySettings
+  (m) => m.getPrivacyDisallowedListTable
 );

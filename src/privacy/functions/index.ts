@@ -1,5 +1,5 @@
 /*!
- * Copyright 2021 WPPConnect Team
+ * Copyright 2022 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-export enum TextFontStyle {
-  SANS_SERIF = 0,
-  SERIF = 1,
-  NORICAN_REGULAR = 2,
-  BRYNDAN_WRITE = 3,
-  BEBASNEUE_REGULAR = 4,
-  OSWALD_HEAVY = 5,
-}
-
-export enum PrivacyDisallowedListType {
-  About = 'status',
-  GroupAdd = 'groupadd',
-  LastSeen = 'last',
-  ProfilePicture = 'profile',
-}
+export { get } from './get';
+export { getDisallowedList } from './getDisallowedList';
+export { setAbout } from './setAbout';
+export { setAddGroup } from './setAddGroup';
+export { setLastSeen } from './setLastSeen';
+export { setOnline } from './setOnline';
+export { setProfilePic } from './setProfilePic';
+export { setReadReceipts } from './setReadReceipts';
+export { setStatus } from './setStatus';

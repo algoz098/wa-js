@@ -1,5 +1,5 @@
 /*!
- * Copyright 2023 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,24 @@
  * limitations under the License.
  */
 
-import { exportModule } from '../exportModule';
-
 /**
- * @whatsapp 135963 >= 2.2310.5
- * @whatsapp WAWebUserPrefsGeneral >= 2.3000.0
+ * Get all privacy settings
+ *
+ * @example
+ * ```javascript
+ * Set value for who can see your online status like 'all'
+ * await WPP.privacy.get();
+ * ```
+ *
+ * @category Privacy
  */
-export declare function getPushname(): string;
-export declare function getUserPrivacySettings(): {
+
+import {
+  getStatusPrivacySetting,
+  getUserPrivacySettings,
+} from '../../whatsapp/functions';
+
+export async function get(): Promise<{
   about: string;
   callAdd: string;
   groupAdd: string;
@@ -29,13 +39,10 @@ export declare function getUserPrivacySettings(): {
   online: string;
   profilePicture: string;
   readReceipts: string;
-};
-
-exportModule(
-  exports,
-  {
-    getPushname: 'getPushname',
-    getUserPrivacySettings: 'getUserPrivacySettings',
-  },
-  (m) => m.getPushname && m.setBrowserId && m.getUserPrivacySettings
-);
+  status: string;
+}> {
+  return {
+    ...getUserPrivacySettings(),
+    ...{ status: await getStatusPrivacySetting() },
+  };
+}
